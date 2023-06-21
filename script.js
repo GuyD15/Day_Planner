@@ -27,8 +27,11 @@ $(function () {
   
     hourUpdater();
     setInterval(hourUpdater, 15000);
+
+    for (var i = 9; i <= 17; i++) {
+        $('#hour-' + i + ' .description').val(localStorage.getItem('hour-' + i));
+    }
   
-    $('#hour-9 .description').val(localStorage.getItem('hour-9'));
     $('#currentDay').text(dayjs().format('dddd, MMMM D, YYYY'));
   });
   
