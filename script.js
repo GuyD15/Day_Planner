@@ -10,7 +10,20 @@ $(function () {
   $(document).ready(function () {
     $('.saveBtn').on('click', function () {});
   
-    function hourUpdater() {}
+    function hourUpdater() {
+        var currentHour = dayjs().hour();
+        $('.time-block').each(function () {
+            var hourBlock = parseInt($(this).attr('id').split('-')[1]);
+
+            if (hourBlock < currentHour) {
+                $(this).removeClass('future present').addClass('past');
+            } else if (hourBlock === currentHour) {
+                $(this).removeClass('past future').addClass('present');
+            } else {
+                $(this).removeClass('past present').addClass('future');
+            }
+        });
+    }
   
     hourUpdater();
     setInterval(hourUpdater, 15000);
